@@ -1,0 +1,2 @@
+c:\users\lisa\documents\visual studio 2015\Projects\DogParksForBlaze\DogParksForBlaze\bin\Debug\DogParksForBlaze.exe.config
+C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\bin\Debug\DogParksForBlaze.exe.config
