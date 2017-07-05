@@ -20,7 +20,12 @@ namespace DogParksForBlaze
         // is different than a reference type which requires the 'new' keyword in order to allocate the memory
         // space; you must create a space before you can put things in it; so here 'accounts' is a pointer
         // to the List of the type DogParkDateAccount
-        private static List<DogParkDateAccount> accounts = new List<DogParkDateAccount>();
+
+        // no longer need following line of code for temp storage of list, creating db
+        // private static List<DogParkDateAccount> accounts = new List<DogParkDateAccount>();
+
+        // this now creates connection to db DogParkDateModel
+        private static DogParkDateModel db = new DogParkDateModel();
 
         private static int lastDogParkNumber = 0;
 
@@ -57,12 +62,19 @@ namespace DogParksForBlaze
                 account.Buy(amount);
             }
             // return the name of the variable, not the class (it is a blueprint, not an instance)
-            accounts.Add(account);
+            db.DogParkDateAccounts.Add(account);
+            db.SaveChanges();
             return account;
         }
         public static List<DogParkDateAccount> GetAllAccounts()
         {
-            return accounts;
+            return db.DogParkDateAccounts.ToList();
+        }
+
+        public static List<Transaction> GetAllTransactionsForAccount(int accountNumber)
+        {
+            // based on accountNum passed as param in Method, return tx for that account
+            return db.Transactions.Where(t => t.AccountNumber == accountNumber).ToList();
         }
 
         public static DogParkDateAccount GetAccountByAccountNumber(int accountNumber)
@@ -70,11 +82,11 @@ namespace DogParksForBlaze
             // this says in my list of accounts, get the account number where it is equal to that passed
             // by user starting with the 'a'th row and continuing until found; the Where stmt is the LINQ
             // and the stmt inside paren is the lambda
-            return db.accounts.Where(a => a.AccountNumber == accountNumber).FirstOrDefault();
+            return db.DogParkDateAccounts.Where(a => a.AccountNumber == accountNumber).FirstOrDefault();
         }
         public static void Buy(int accountNumber, decimal amount)
         {
-            var account = db.Accounts.Where(a => a.AccountNumber == accountNumber).FirstOrDefault();
+            var account = db.DogParkDateAccounts.Where(a => a.AccountNumber == accountNumber).FirstOrDefault();
             if (account == null)
                 throw new ArgumentOutOfRangeException("Account number is not valid.");
             account.Buy(amount);
@@ -82,12 +94,13 @@ namespace DogParksForBlaze
             var transaction = new Transaction
             {
                 TransactionDate = DateTime.Now,
-                Description = "Branch Deposit",
+                Description = "Purchase BarkBucks",
                 TransactionType = TransactionType.Credit,
                 Amount = amount,
                 AccountNumber = accountNumber
             };
 
+            // this adds row to table and commits the changes
             db.Transactions.Add(transaction);
             db.SaveChanges();
         }
@@ -95,7 +108,7 @@ namespace DogParksForBlaze
         public static void Use(int accountNumber, decimal amount)
         {
 
-            var account = db.Accounts.Where(a => a.AccountNumber == accountNumber).FirstOrDefault();
+            var account = db.DogParkDateAccounts.Where(a => a.AccountNumber == accountNumber).FirstOrDefault();
             if (account == null)
                 throw new ArgumentOutOfRangeException("Account number is not found.");
 

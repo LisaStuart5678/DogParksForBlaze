@@ -19,6 +19,7 @@ namespace DogParksForBlaze
                 Console.WriteLine("2. Buy BarkBucks - Purchase");
                 Console.WriteLine("3. Set A DoggyDate - Use BarkBucks");
                 Console.WriteLine("4. Print all accounts");
+                Console.WriteLine("5. Print all transactions");
 
                 // ask user to select something from list
                 // readline puts cursor on screen and stays until user types a selection and presses enter
@@ -66,14 +67,14 @@ namespace DogParksForBlaze
                         try
                         {
                         Console.Write("Select the account number for which to buy BarkBucks: ");
-                        var accountNum = Convert.ToInt32(Console.ReadLine());
-                            {
-                                Console.Write("Amount to buy: ");
-                                // no need to declare again by typing 'var' since already declared before
-                                var Amount = Convert.ToInt32(Console.ReadLine());
-                                DogParkDate.Buy(accountNum, Amount);
-                                Console.WriteLine("BarkBucks purchase completed successfully!");
-                            }
+                        var accountNum2 = Convert.ToInt32(Console.ReadLine());
+                            
+                        Console.Write("Amount to buy: ");
+                        // no need to declare again by typing 'var' since already declared before
+                        var Amount = Convert.ToInt32(Console.ReadLine());
+                        DogParkDate.Buy(accountNum2, Amount);
+                        Console.WriteLine("BarkBucks purchase completed successfully!");
+                            
                         }
                         catch (ArgumentOutOfRangeException ax)
                         {
@@ -85,12 +86,12 @@ namespace DogParksForBlaze
                         try
                         {
                             Console.Write("Select the account number from which to use BarkBucks: ");
-                            var accountNum = Convert.ToInt32(Console.ReadLine());
+                            var accountNum2 = Convert.ToInt32(Console.ReadLine());
                             {
                                 Console.Write("Amount to use (how many doggy dates?) ");
                                 // no need to declare again by typing 'var' since already declared before
                                 var Amount = Convert.ToInt32(Console.ReadLine());
-                                DogParkDate.Use(accountNum, Amount);
+                                DogParkDate.Use(accountNum2, Amount);
                                 Console.WriteLine("DoggyDate set up successfully using your BarkBucks!");
                             }
                         }
@@ -107,7 +108,18 @@ namespace DogParksForBlaze
                             Console.WriteLine($"AcctNum: , {acct.AccountNumber}, BarkBucks Balance: {acct.BarkBucks:C}");
                         }
                         break;
-                     default:
+                    case "5":
+                        PrintAllAccounts();
+                        Console.Write("Select the account number to see transactions: ");
+                        var accountNum = Convert.ToInt32(Console.ReadLine());
+                        var transactions = DogParkDate.GetAllTransactionsForAccount(accountNum);
+                        foreach (var transaction in transactions)
+                        {
+                            // $ before allows to write in-line
+                            Console.WriteLine($"Transaction ID: {transaction.TransactionID}, Date: {transaction.TransactionDate}, Description: {transaction.Description}, TransactionType: {transaction.TransactionType}, Amount: { transaction.Amount:C} ");
+                        }
+                        break;
+                    default:
                         break;
                 }
             }
@@ -119,7 +131,7 @@ namespace DogParksForBlaze
             // foreach goes directly to each item in container, instead of indexes as in for loop
             foreach (var acct in accounts) // collection is coming from previous line variable name 'accounts'
             {
-                Console.WriteLine($"AN: , {acct.AccountNumber}, Balance: {acct.BarkBucks:C}");
+                Console.WriteLine($"AcctNum: , {acct.AccountNumber}, BarkBucks Balance: {acct.BarkBucks:C}");
             }
         }
     }

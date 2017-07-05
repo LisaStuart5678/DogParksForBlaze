@@ -5,3 +5,10 @@ C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\Dog
 C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\bin\Debug\DogParksForBlaze.pdb
 C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\obj\Debug\DogParksForBlaze.exe
 C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\obj\Debug\DogParksForBlaze.pdb
+C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\bin\Debug\EntityFramework.dll
+C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\bin\Debug\EntityFramework.xml
+C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\obj\Debug\DogParksForBlaze.Migrations.CreatedDate.resources
+C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\obj\Debug\DogParksForBlaze.csproj.GenerateResource.Cache
+C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\obj\Debug\DogParksForBlaze.Migrations.ChangeDateTimeToNullable.resources

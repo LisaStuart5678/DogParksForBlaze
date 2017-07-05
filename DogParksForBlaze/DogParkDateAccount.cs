@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace DogParksForBlaze
     /// <summary>
     /// This is an account that holds information of an account for a particular dog owner
     /// </summary>
-    class DogParkDateAccount
+    public class DogParkDateAccount
     {
         
         // static means that there's only one copy vs an instance which can be many copies of an object
@@ -36,12 +37,17 @@ namespace DogParksForBlaze
         /// accessModifier dataType NameOfProperty
         /// </summary>
         // private set lets you control who is able to access
+        [Key]
         public int AccountNumber { get; private set; } // 1. Created first, originally not private
         public string UserName { get; set; } // 2. created second
         public string EmailAddress { get; set; } // 3. created third
         public string DogName { get; set; }
         public decimal BarkBucks { get; private set; } // 4. created fourth; private means user cannot set, only those with access to this class (webmaster)
         public AccountTypes TypeOfAccount { get; set; } // 5. created fifth, then added region specifying these are all the Properties (by naming the region that) which can then collapse
+        public DateTime? CreatedDate { get; set; }
+
+        // a collection of transactions where 'virtual' keyword creates the rel'ship
+        public virtual ICollection<Transaction> Transactions { get; set; }
         #endregion
 
         // C2. a constructor is a special method that doesn't require a return type and is called with the keyword 'new'
