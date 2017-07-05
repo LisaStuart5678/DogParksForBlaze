@@ -23,6 +23,7 @@ namespace DogParksForBlaze
     /// </summary>
     class DogParkDateAccount
     {
+        
         // static means that there's only one copy vs an instance which can be many copies of an object
         // by making it static, the instances of 'account' can share/access the variable when necessary
         private static int lastAccountNumber = 0;
@@ -73,7 +74,7 @@ namespace DogParksForBlaze
         }
         public DogParkDateAccount(string userName, string emailAddress, AccountTypes typeOfAccount, decimal amount) : this(userName, emailAddress, typeOfAccount)
         {
-            Earn(amount); // earn bark bucks based on amount of shares, spend them to set up dates or earn dog treats/toys
+            Buy(amount); // buy (and later earn bark bucks based on amount of shares), spend them to set up dates or earn dog treats/toys
         }
         #endregion
         #region Methods
@@ -84,12 +85,16 @@ namespace DogParksForBlaze
         /// accessible within the method in which it is defined, so it's local to the scope of that method
         /// </summary>
         /// <param name="amount"></param>
-        public void Earn(decimal amount)
+        public void Buy(decimal amount)
         {
             BarkBucks += amount; // what does this method do? always end statements with a semi-colon (;)
         }
         public void Use(decimal amount)
         {
+            if (amount > BarkBucks)
+            {
+                throw new ArgumentOutOfRangeException("Amount is greater than BarkBucks balance in your account.");
+            }
             BarkBucks -= amount;
         }
 
