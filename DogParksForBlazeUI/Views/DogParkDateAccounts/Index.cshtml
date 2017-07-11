@@ -1,0 +1,63 @@
+﻿@model IEnumerable<DogParksForBlaze.DogParkDateAccount>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DogName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BarkBucks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeOfAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DogName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BarkBucks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeOfAccount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AccountNumber }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AccountNumber }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AccountNumber })
+        </td>
+    </tr>
+}
+
+</table>

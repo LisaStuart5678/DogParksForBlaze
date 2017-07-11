@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DogParksForBlaze
-{
+{// once this is turned into a web application, can delete this whole program.cs file
+    // as it will no longer be accessible and used to run the app
     class Program
     {
         static void Main(string[] args)
