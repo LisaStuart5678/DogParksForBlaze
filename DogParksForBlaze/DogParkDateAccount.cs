@@ -22,7 +22,7 @@ namespace DogParksForBlaze
     /// <summary>
     /// This is an account that holds information of an account for a particular dog owner
     /// </summary>
-    public class DogParkDateAccount
+    public class dogParkDateAccount
     {
         
         // static means that there's only one copy vs an instance which can be many copies of an object
@@ -39,7 +39,10 @@ namespace DogParksForBlaze
         // private set lets you control who is able to access
         [Key]
         public int AccountNumber { get; private set; } // 1. Created first, originally not private
+        [Required]
+        [StringLength(50)]
         public string UserName { get; set; } // 2. created second
+        [Required]
         public string EmailAddress { get; set; } // 3. created third
         public string DogName { get; set; }
         public decimal BarkBucks { get; private set; } // 4. created fourth; private means user cannot set, only those with access to this class (webmaster)
@@ -55,30 +58,31 @@ namespace DogParksForBlaze
         // the method that is created just after needs to be given the same name as the class name followed by parentheses
         // if looking at someone else's code and see a method name that is same as class name, know it's a constructor
         #region Constructor 
-        public DogParkDateAccount()
+        public dogParkDateAccount()
         {
             lastAccountNumber++;
             AccountNumber = lastAccountNumber;
+            CreatedDate = DateTime.Now;
         }
 
         // D1. Overloading a constructor, using the same method with different parameters (although now C# helps so no 
         // need to create all possible combinations (see Program.cs)
-        public DogParkDateAccount(string userName) : this() // this refers to the current construction, here the person creating
+        public dogParkDateAccount(string userName) : this() // this refers to the current construction, here the person creating
                                                     // the new account wants a certain account name, so this overload allows to set the property as what
                                                     // the person is telling you they want
         {
             UserName = userName;
         }
-        public DogParkDateAccount(string userName, string emailAddress) : this(userName) // want to add parameter to 'this' of previous overload which in turn does previous code
+        public dogParkDateAccount(string userName, string emailAddress) : this(userName) // want to add parameter to 'this' of previous overload which in turn does previous code
         {
             // so if you are given an account name and email address, the last account number code is fired recursively after the one that follows it and so on (here setting email)
             EmailAddress = emailAddress;
         }
-        public DogParkDateAccount(string userName, string emailAddress, AccountTypes typeOfAccount) : this(userName, emailAddress)
+        public dogParkDateAccount(string userName, string emailAddress, AccountTypes typeOfAccount) : this(userName, emailAddress)
         {
             TypeOfAccount = typeOfAccount;
         }
-        public DogParkDateAccount(string userName, string emailAddress, AccountTypes typeOfAccount, decimal amount) : this(userName, emailAddress, typeOfAccount)
+        public dogParkDateAccount(string userName, string emailAddress, AccountTypes typeOfAccount, decimal amount) : this(userName, emailAddress, typeOfAccount)
         {
             Buy(amount); // buy (and later earn bark bucks based on amount of shares), spend them to set up dates or earn dog treats/toys
         }

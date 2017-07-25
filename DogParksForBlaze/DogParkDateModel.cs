@@ -32,7 +32,7 @@ namespace DogParksForBlaze
         // of the DogParkDateAccount class; DogParkDateAccounts has red squiggly under it
         // until go to DogParkDateAccount class and type 'public' in front of account class
         // to make it accessible
-        public virtual DbSet<DogParkDateAccount> DogParkDateAccounts { get; set; }
+        public virtual DbSet<dogParkDateAccount> DogParkDateAccounts { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
     }
 

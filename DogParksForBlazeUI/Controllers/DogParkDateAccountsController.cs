@@ -19,7 +19,8 @@ namespace DogParksForBlazeUI.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.DogParkDateAccounts.ToList());
+            var accounts = DogParkDate.GetAllAccounts(HttpContext.User.Identity.Name);
+            return View(accounts);
         }
 
         // GET: DogParkDateAccounts/Details/5
@@ -29,7 +30,7 @@ namespace DogParksForBlazeUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DogParkDateAccount dogParkDateAccount = db.DogParkDateAccounts.Find(id);
+            dogParkDateAccount dogParkDateAccount = db.DogParkDateAccounts.Find(id);
             if (dogParkDateAccount == null)
             {
                 return HttpNotFound();
@@ -38,9 +39,14 @@ namespace DogParksForBlazeUI.Controllers
         }
 
         // GET: DogParkDateAccounts/Create
+        [Authorize]
         public ActionResult Create()
         {
-            return View();
+            var account = new dogParkDateAccount
+            {
+                EmailAddress = HttpContext.User.Identity.Name
+            };
+            return View(account);
         }
 
         // POST: DogParkDateAccounts/Create
@@ -48,12 +54,11 @@ namespace DogParksForBlazeUI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AccountNumber,UserName,EmailAddress,DogName,BarkBucks,TypeOfAccount,CreatedDate")] DogParkDateAccount dogParkDateAccount)
+        public ActionResult Create([Bind(Include = "AccountNumber,UserName,EmailAddress,DogName,BarkBucks,TypeOfAccount,CreatedDate")] dogParkDateAccount dogParkDateAccount)
         {
             if (ModelState.IsValid)
             {
-                db.DogParkDateAccounts.Add(dogParkDateAccount);
-                db.SaveChanges();
+                DogParkDate.CreateAccount(dogParkDateAccount.EmailAddress, dogParkDateAccount.TypeOfAccount, 0.0M, dogParkDateAccount.UserName);
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +72,7 @@ namespace DogParksForBlazeUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DogParkDateAccount dogParkDateAccount = db.DogParkDateAccounts.Find(id);
+            dogParkDateAccount dogParkDateAccount = db.DogParkDateAccounts.Find(id);
             if (dogParkDateAccount == null)
             {
                 return HttpNotFound();
@@ -80,7 +85,7 @@ namespace DogParksForBlazeUI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccountNumber,UserName,EmailAddress,DogName,BarkBucks,TypeOfAccount,CreatedDate")] DogParkDateAccount dogParkDateAccount)
+        public ActionResult Edit([Bind(Include = "AccountNumber,UserName,EmailAddress,DogName,BarkBucks,TypeOfAccount,CreatedDate")] dogParkDateAccount dogParkDateAccount)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +103,7 @@ namespace DogParksForBlazeUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DogParkDateAccount dogParkDateAccount = db.DogParkDateAccounts.Find(id);
+            dogParkDateAccount dogParkDateAccount = db.DogParkDateAccounts.Find(id);
             if (dogParkDateAccount == null)
             {
                 return HttpNotFound();
@@ -111,7 +116,7 @@ namespace DogParksForBlazeUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DogParkDateAccount dogParkDateAccount = db.DogParkDateAccounts.Find(id);
+            dogParkDateAccount dogParkDateAccount = db.DogParkDateAccounts.Find(id);
             db.DogParkDateAccounts.Remove(dogParkDateAccount);
             db.SaveChanges();
             return RedirectToAction("Index");

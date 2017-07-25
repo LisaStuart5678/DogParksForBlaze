@@ -35,6 +35,6 @@ namespace DogParksForBlaze
         public int AccountNumber { get; set; }
 
         // virtual relationship between Transaction class to the DogParkDateAccount class
-        public virtual DogParkDateAccount DogParkDateAccount { get; set; }
+        public virtual dogParkDateAccount DogParkDateAccount { get; set; }
     }
 }

@@ -12,3 +12,5 @@ C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\Dog
 C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\bin\Debug\DogParksForBlaze.dll.config
 C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\bin\Debug\DogParksForBlaze.dll
 C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\obj\Debug\DogParksForBlaze.dll
+C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\obj\Debug\DogParksForBlaze.Migrations.Attributes.resources
+C:\Users\Lisa\Desktop\DataScienceDegree\Portfolio Projects - GitHub\DogParks\DogParksForBlaze\obj\Debug\DogParksForBlaze.Migrations.moreFixes.resources

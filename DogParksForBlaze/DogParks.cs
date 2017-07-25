@@ -13,7 +13,7 @@ namespace DogParksForBlaze
     /// <summary>
     /// This holds information about dog parks
     /// </summary>
-    static class DogParkDate
+    public class DogParkDate
     {
         // create a list data type to store account numbers from the class DogParkDateAccount (which is the data type)
         // in and then call it accounts (plural); assigning a value to a value type such as a variable like int i = 10
@@ -36,18 +36,24 @@ namespace DogParksForBlaze
         public static string DogParkAddress { get; set; }
         public static string DogParkCity { get; set; }
         public static string DogParkState { get; set; }
+
+        public static void CreateAccount(string emailAddress, AccountTypes typeOfAccount, decimal v, string userName)
+        {
+            throw new NotImplementedException();
+        }
+
         public static string DogParkZip { get; set; }
         public static int DogParkNumber { get; set; }
         #endregion
 
         #region Methods
         // get items from user account that are not set to private
-        public static DogParkDateAccount CreateAccount(string userName, string emailAddress, string dogName, 
+        public static dogParkDateAccount CreateAccount(string userName, string emailAddress, string dogName, 
             AccountTypes typeOfAccount, int amount)
         {
             // any time use 'new' keyword means it is a reference type creating to put values into
             // just use curly braces allows for not having to use a constructor
-            var account = new DogParkDateAccount
+            var account = new dogParkDateAccount
             {
                 // property name equal to variable name so no need to use a constructor, left side is property in 
                 // account class and right side is variable accepting as parameters
@@ -66,9 +72,9 @@ namespace DogParksForBlaze
             db.SaveChanges();
             return account;
         }
-        public static List<DogParkDateAccount> GetAllAccounts()
+        public static List<dogParkDateAccount> GetAllAccounts(string emailAddress)
         {
-            return db.DogParkDateAccounts.ToList();
+            return db.DogParkDateAccounts.Where(a => a.EmailAddress == emailAddress).ToList();
         }
 
         public static List<Transaction> GetAllTransactionsForAccount(int accountNumber)
@@ -77,7 +83,7 @@ namespace DogParksForBlaze
             return db.Transactions.Where(t => t.AccountNumber == accountNumber).ToList();
         }
 
-        public static DogParkDateAccount GetAccountByAccountNumber(int accountNumber)
+        public static dogParkDateAccount GetAccountByAccountNumber(int accountNumber)
         {
             // this says in my list of accounts, get the account number where it is equal to that passed
             // by user starting with the 'a'th row and continuing until found; the Where stmt is the LINQ
